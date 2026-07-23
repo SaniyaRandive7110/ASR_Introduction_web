@@ -17,9 +17,67 @@
 
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #fff5f7, #f0f8ff);
     color: var(--text-dark);
     line-height: 1.7;
+    overflow-x: hidden;
+    position: relative;
+
+    /* Animated gradient background */
+    background: linear-gradient(-45deg, #fff5f7, #eaf4ff, #fff8e1, #eafff0);
+    background-size: 400% 400%;
+    animation: gradientShift 18s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Floating colorful blobs */
+.blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    z-index: -1;
+}
+
+.blob1 {
+    width: 300px;
+    height: 300px;
+    background: var(--pink);
+    top: 5%;
+    left: 5%;
+    animation: moveBlob1 12s ease-in-out infinite;
+}
+
+.blob2 {
+    width: 350px;
+    height: 350px;
+    background: var(--blue);
+    top: 50%;
+    right: 5%;
+    animation: moveBlob2 15s ease-in-out infinite;
+}
+
+.blob3 {
+    width: 250px;
+    height: 250px;
+    background: var(--yellow);
+    bottom: 5%;
+    left: 30%;
+    animation: moveBlob1 10s ease-in-out infinite reverse;
+}
+
+@keyframes moveBlob1 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(50px, 80px); }
+}
+
+@keyframes moveBlob2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-60px, -40px); }
 }
 
 /* Navbar */
@@ -61,6 +119,12 @@ nav {
 .hero {
     text-align: center;
     padding: 50px 20px 90px;
+    animation: fadeIn 1.2s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .profile-pic {
@@ -74,6 +138,12 @@ nav {
     color: #fff;
     margin: 0 auto 25px;
     box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+    animation: bounce 3s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
 
 .hero h1 {
@@ -108,7 +178,7 @@ nav {
     text-decoration: none;
     font-weight: 700;
     font-size: 14px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-primary {
@@ -117,7 +187,7 @@ nav {
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px) scale(1.05);
     box-shadow: 0 10px 25px rgba(255, 107, 157, 0.4);
 }
 
@@ -130,7 +200,7 @@ nav {
 .btn-outline:hover {
     background: var(--blue);
     color: white;
-    transform: translateY(-3px);
+    transform: translateY(-5px) scale(1.05);
 }
 
 /* Main sections */
@@ -145,12 +215,26 @@ main {
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(6px);
 }
 
-.bg-yellow { background: #fff8e1; border-left: 6px solid var(--yellow); }
-.bg-blue { background: #eaf4ff; border-left: 6px solid var(--blue); }
-.bg-pink { background: #ffeef4; border-left: 6px solid var(--pink); }
-.bg-green { background: #eafff0; border-left: 6px solid var(--green); }
+/* Scroll fade-in effect */
+.fade-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.bg-yellow { border-left: 6px solid var(--yellow); }
+.bg-blue { border-left: 6px solid var(--blue); }
+.bg-pink { border-left: 6px solid var(--pink); }
+.bg-green { border-left: 6px solid var(--green); }
 
 section h2 {
     font-size: 24px;
@@ -175,11 +259,11 @@ section p {
     text-align: center;
     color: white;
     font-weight: 600;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease;
 }
 
 .skill-card:hover {
-    transform: translateY(-8px) scale(1.03);
+    transform: translateY(-8px) scale(1.05);
 }
 
 .skill-card.pink { background: linear-gradient(135deg, var(--pink), #ff8fb3); }
@@ -205,11 +289,11 @@ section p {
     border-radius: 16px;
     padding: 25px;
     box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-    transition: transform 0.3s;
+    transition: transform 0.3s ease;
 }
 
 .project-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-8px);
 }
 
 .project-card h3 {
@@ -247,3 +331,19 @@ footer {
     color: var(--text-muted);
     font-size: 13px;
 }
+
+File 3: script.js
+
+javascript
+// Scroll-triggered fade-in animation for sections
+const sections = document.querySelectorAll('.fade-section');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.2 });
+
+sections.forEach(section => observer.observe(section));
