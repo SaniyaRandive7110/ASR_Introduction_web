@@ -5,40 +5,24 @@
 }
 
 :root {
-    --bg-dark: #0a0e17;
-    --bg-card: #131a29;
-    --accent: #00d4ff;
-    --accent-purple: #a855f7;
-    --text-light: #e6ecf5;
-    --text-muted: #8b98ab;
+    --pink: #ff6b9d;
+    --orange: #ffa63d;
+    --yellow: #ffd93d;
+    --green: #6bcf7f;
+    --blue: #4d96ff;
+    --purple: #a66dfa;
+    --text-dark: #2d2d2d;
+    --text-muted: #5a5a5a;
 }
 
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-light);
+    background: linear-gradient(135deg, #fff5f7, #f0f8ff);
+    color: var(--text-dark);
     line-height: 1.7;
-    overflow-x: hidden;
-    position: relative;
 }
 
-.background-glow {
-    position: fixed;
-    top: -200px;
-    left: -200px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(0,212,255,0.15), transparent 70%);
-    border-radius: 50%;
-    z-index: -1;
-    animation: float 10s ease-in-out infinite alternate;
-}
-
-@keyframes float {
-    from { transform: translate(0, 0); }
-    to { transform: translate(100px, 150px); }
-}
-
+/* Navbar */
 nav {
     display: flex;
     justify-content: space-between;
@@ -47,13 +31,13 @@ nav {
 }
 
 .logo {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: bold;
-    color: var(--text-light);
+    color: var(--text-dark);
 }
 
 .logo span {
-    color: var(--accent);
+    color: var(--pink);
 }
 
 .nav-links {
@@ -62,19 +46,21 @@ nav {
 }
 
 .nav-links a {
-    color: var(--text-muted);
+    color: var(--text-dark);
     text-decoration: none;
     font-size: 15px;
+    font-weight: 600;
     transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    color: var(--accent);
+    color: var(--pink);
 }
 
+/* Hero */
 .hero {
     text-align: center;
-    padding: 60px 20px 100px;
+    padding: 50px 20px 90px;
 }
 
 .profile-pic {
@@ -82,21 +68,21 @@ nav {
     height: 110px;
     line-height: 110px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), var(--accent-purple));
+    background: linear-gradient(135deg, var(--pink), var(--orange), var(--yellow));
     font-size: 32px;
     font-weight: bold;
     color: #fff;
     margin: 0 auto 25px;
-    box-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+    box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
 }
 
 .hero h1 {
-    font-size: 38px;
+    font-size: 36px;
     margin-bottom: 12px;
 }
 
 .highlight {
-    background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+    background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -106,6 +92,7 @@ nav {
     color: var(--text-muted);
     font-size: 16px;
     margin-bottom: 30px;
+    font-weight: 600;
 }
 
 .hero-buttons {
@@ -119,58 +106,62 @@ nav {
     padding: 12px 28px;
     border-radius: 30px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .btn-primary {
-    background: linear-gradient(90deg, var(--accent), var(--accent-purple));
-    color: #0a0e17;
+    background: linear-gradient(90deg, var(--pink), var(--orange));
+    color: #fff;
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 10px 25px rgba(255, 107, 157, 0.4);
 }
 
 .btn-outline {
-    border: 1px solid var(--accent);
-    color: var(--accent);
+    border: 2px solid var(--blue);
+    color: var(--blue);
+    background: white;
 }
 
 .btn-outline:hover {
-    background: rgba(0, 212, 255, 0.1);
+    background: var(--blue);
+    color: white;
     transform: translateY(-3px);
 }
 
+/* Main sections */
 main {
     max-width: 900px;
     margin: 0 auto;
     padding: 20px 30px 60px;
 }
 
-section {
-    margin-bottom: 80px;
+.card-bg {
+    margin-bottom: 30px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
+
+.bg-yellow { background: #fff8e1; border-left: 6px solid var(--yellow); }
+.bg-blue { background: #eaf4ff; border-left: 6px solid var(--blue); }
+.bg-pink { background: #ffeef4; border-left: 6px solid var(--pink); }
+.bg-green { background: #eafff0; border-left: 6px solid var(--green); }
 
 section h2 {
-    font-size: 26px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.num {
-    color: var(--accent);
-    font-size: 18px;
+    font-size: 24px;
+    margin-bottom: 18px;
 }
 
 section p {
     color: var(--text-muted);
 }
 
+/* Skills */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -179,29 +170,29 @@ section p {
 }
 
 .skill-card {
-    background: var(--bg-card);
-    border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 12px;
+    border-radius: 14px;
     padding: 25px 15px;
     text-align: center;
-    transition: transform 0.3s, border-color 0.3s;
+    color: white;
+    font-weight: 600;
+    transition: transform 0.3s;
 }
 
 .skill-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent);
+    transform: translateY(-8px) scale(1.03);
 }
+
+.skill-card.pink { background: linear-gradient(135deg, var(--pink), #ff8fb3); }
+.skill-card.orange { background: linear-gradient(135deg, var(--orange), #ffc46b); }
+.skill-card.green { background: linear-gradient(135deg, var(--green), #9be6a8); }
+.skill-card.purple { background: linear-gradient(135deg, var(--purple), #c79bfc); }
 
 .skill-icon {
     font-size: 30px;
     margin-bottom: 10px;
 }
 
-.skill-card h3 {
-    font-size: 15px;
-    color: var(--text-light);
-}
-
+/* Projects */
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -210,12 +201,10 @@ section p {
 }
 
 .project-card {
-    background: var(--bg-card);
-    border-radius: 14px;
+    background: white;
+    border-radius: 16px;
     padding: 25px;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
     transition: transform 0.3s;
 }
 
@@ -223,18 +212,8 @@ section p {
     transform: translateY(-6px);
 }
 
-.project-glow {
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(168,85,247,0.15), transparent 70%);
-    border-radius: 50%;
-}
-
 .project-card h3 {
-    color: var(--text-light);
+    color: var(--text-dark);
     margin-bottom: 10px;
     font-size: 18px;
 }
@@ -246,16 +225,19 @@ section p {
 
 .tag {
     display: inline-block;
-    background: rgba(0, 212, 255, 0.1);
-    color: var(--accent);
+    background: linear-gradient(90deg, var(--pink), var(--purple));
+    color: white;
     font-size: 12px;
-    padding: 5px 12px;
+    font-weight: 600;
+    padding: 6px 14px;
     border-radius: 20px;
 }
 
+/* Contact */
 .email {
-    color: var(--accent);
+    color: var(--blue);
     font-size: 18px;
+    font-weight: 700;
     margin: 10px 0 20px;
 }
 
@@ -264,5 +246,4 @@ footer {
     padding: 25px;
     color: var(--text-muted);
     font-size: 13px;
-    border-top: 1px solid rgba(255,255,255,0.05);
 }
