@@ -1,4 +1,3 @@
-javascript
 // Scroll-triggered fade-in animation for sections
 const sections = document.querySelectorAll('.fade-section');
 
